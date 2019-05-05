@@ -1,0 +1,63 @@
+<div class="col-lg-3 col-md-3 col-sm-12 member-wrapper">
+    <div class="box-01 pt-3 shadow-sm">
+        <h4 class="text-left pl-3" style="color: #e3ae57;">Thành viên</h4>
+        <hr style="border: 1px solid #212529;">
+        <%if( data && data.error) {%>
+        <div  id="login-alert" class="alert alert-danger mx-2">
+            <%=data.error%>
+        </div>
+        <%}%>
+        <form id="loginform" class="form-horizontal pb-3" role="form" method="POST"  action="/">
+            <div class="form-group mx-2">
+              <label for="Username">Username:</label>
+              <input type="text" class="form-control" name="username" value="" placeholder="Username">
+            </div>
+            <div class="form-group mx-2">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+            </div>
+            
+            <div class="text-center"><button type="submit" class="btn btn-secondary">Đăng nhập</button></div>
+            <hr>
+            <p class="text-center mb-0"><a href="#">Quên mật khẩu</a></p>
+            <p class="text-center mb-0">Bạn chưa có tài khoản ?<a href="/signup" >Đăng ký</a></p>
+        </form>
+    </div>
+
+    <div class="box-02 mt-3 shadow-sm">
+        <h4 class="text-left pl-3 pt-3" style="color: #e3ae57;">Liên kết</h4>
+        <hr style="border: 1px solid #212529;">
+        <ul class="link_edu">
+            <li class="ml-3">
+                <p>
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                    <a href="http://uneti.edu.vn">Uneti.edu.vn</a>
+                </p>
+            </li>
+            <li class="ml-3">
+                <p><i class="fa fa-link" aria-hidden="true"></i>
+                <a href="http://daotao.uneti.edu.vn">Daotao.uneti.edu.vn</a></p>
+            </li>
+            <li class="ml-3">
+                <p><i class="fa fa-link" aria-hidden="true"></i>
+                <a href="http://khoacntt.uneti.edu.vn">Khoacntt.uneti.vn</a></p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="box-03 mt-3 shadow-sm">
+        <h4 class="text-left pl-3 pt-3" style="color: #e3ae57;">Thông kê hoạt động</h4>
+        <hr style="border: 1px solid #212529;">
+        <p class="ml-3"><i class="fas fa-user-tie tk-icon"></i> Đang online: 108</p>
+        <p class="ml-3"><i class="fas fa-user-plus tk-icon"></i> Hôm nay: 573 </p>
+        <p class="ml-3"><i class="fas fa-user-clock tk-icon"></i> Hôm qua: 1717 </p>
+        <p class="ml-3"><i class="fas fa-users tk-icon"></i> Tổng cộng: 442917</p>
+    </div>
+
+    <div class="box-04 mt-3 shadow-sm">
+        <h4 class="text-left pl-3 pt-3" style="color: #e3ae57;">Các hoạt động</h4>
+        <hr style="border: 1px solid #212529;">
+        <iframe width="90%" height="90%;" class="ml-3 mb-3" src="https://www.youtube.com/embed/gWcXKmTO2dA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+</div>

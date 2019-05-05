@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng ký</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+</head>
+<body>
+    <%- include layout/nav.ejs %>
+    <div class="container">
+        <div id="loginbox" style="margin: 120px auto 220px auto;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">          
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title text-center text-uppercase" style="font-size: 40px; ">Đăng ký thành viên</div>
+                </div>     
+                <div style="padding-top:30px" class="panel-body" >
+                    <div id="signupalert" style="<%if( !data || !data.error) {%>display:none <%}%>" class="alert alert-danger">
+                        Error:
+                        <%if (data && data.error) {%>
+                        <span><%=data.error%></span>
+                        <%}%>
+                    </div>
+                    <form class="form-horizontal" role="form" method="POST" action="/signup">
+                     
+                        <div class="mb-2">
+                            Username:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user" style="margin-right: 6px;"></i></span>
+                            </div>
+                            <input type="text" name="username"  class="form-control" placeholder="Usename" value="<%if (data && data.user) {%><%=data.user.username%><%}%>">
+                        </div>     
+
+                        
+                        <div class="mb-2">
+                            Họ tên:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                            </div>
+                            <input type="text" name="fullname" class="form-control" placeholder="Full name" value="<%if (data && data.user) {%><%=data.user.fullname%><%}%>">
+                        </div>
+                        
+                        <div class="mb-2">
+                            Mã sinh viên:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                            </div>
+                            <input type="text" name="studentcode"  class="form-control" placeholder="Student code" value="<%if (data && data.user) {%><%=data.user.studentcode%><%}%>">
+                        </div>
+                        
+                        <div class="mb-2">
+                            Lớp:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-school"></i></span>
+                            </div>
+                            <input type="text" name="class"  class="form-control" placeholder="Class" value="<%if (data && data.user) {%><%=data.user.class%><%}%>">
+                        </div>
+                        
+                        <div class="mb-2">
+                            Email:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope-open-text" style="margin-right: 4px;"></i></span>
+                            </div>
+                            <input type="text" name="email"  class="form-control" placeholder="Email" value="<%if (data && data.user) {%><%=data.user.email%><%}%>">
+                        </div>
+                        
+                        <div class="mb-2">
+                            Số điện thoại:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone-volume" style="margin-right: 6px; margin-left: 2px;"></i></span>
+                            </div>
+                            <input type="text" name="phonenumber"  class="form-control" placeholder="Phone number" value="<%if (data && data.user) {%><%=data.user.phonenumber%><%}%>">
+                        </div>
+                        
+                        <div class="mb-2">
+                            Ngày sinh: 
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-birthday-cake" style="margin-right: 6px; margin-left: 1px;"></i></span>
+                            </div>
+                            <input type="date" name="dateofbirth"  class="form-control" value="<%if (data && data.user) {%><%=data.user.dateofbirth%><%}%>">
+                        </div>
+
+                        <div class="mb-2">
+                            Địa chỉ:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-address-card" style="margin-right: 3px; margin-left: 1px;"></i></span>
+                            </div>
+                            <input type="text" name="address"  class="form-control" placeholder="Address" value="<%if (data && data.user) {%><%=data.user.address%><%}%>">
+                        </div>   
+                        
+                        <div class="mb-2">
+                            Bạn muốn là thành viên của nhóm:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect">
+                                    <i class="fas fa-users" style="margin-right: 3px; margin-left: 1px;"></i>
+                                </label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect" name="studygroup">
+                                <option selected value="0">Chọn nhóm...</option>
+                                <option <%if(data && data.user && data.user.studygroup ==1){%> selected <%}%> value="1">Lập trình</option>
+                                <option <%if(data && data.user && data.user.studygroup ==2){%> selected <%}%> value="2">Lập trình WEB</option>
+                                <option <%if(data && data.user && data.user.studygroup ==3){%> selected <%}%> value="3">Thiết kế đồ họa</option>
+                                <option <%if(data && data.user && data.user.studygroup ==4){%> selected <%}%> value="4">Quản trị mạng</option>
+                            </select>
+                        </div> 
+
+                        <div class="mb-2">
+                            Thiết lập mật khẩu:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+
+                        <div class="input-group mb-5">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock" style="margin-right: 6px; "></i></span>
+                            </div>
+                            <input type="password" name="repassword" class="form-control" placeholder="Re-Password">
+                        </div> 
+
+                        <div class="mb-2">
+                            Tải đơn đăng ký:
+                        </div>
+
+                        <div class="mb-2">
+                            Bằng việc gửi thông tin đăng ký, bạn đã chấp nhận và cam kết chấp hành nội quy, chính sách của câu lạc bộ Tin học !
+                        </div>
+
+                        <div class="text-center" style="margin-top: 50px;" >
+                            <input type="submit" name="btn_submit" value="Đăng ký" class="btn btn-success" style="width: 150px;">
+                            <a class="btn btn-secondary" style="width: 150px;" href="/">Quay lại</a>
+                        </div>
+                    </form>
+                </div>        
+            </div>  
+        </div>
+    </div>
+
+    <footer class="pt-3 pb-3">
+        <div class="container-fluid" id="lien-he-ft">
+            <div class="container text-center">
+                <h5>Copyright © 2018 Câu lạc bộ Tin học - UNETI</h5>
+                <p>Địa chỉ: Lĩnh Nam, Hoàng Mai, Hà Nội - Fax:(04)8623938
+                    <br>Điện thoại: (04)8621504 - Email: clbtinhoc@uneti.com</p>
+                <h6>Thiết kế bởi  <a href="#" style="color: #e3ae57">LMP_Team</a></h6>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

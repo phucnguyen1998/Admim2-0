@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chỉnh sửa thành viên</title>
+    <%- include ../layout/head.ejs %>
+    
+</head>
+<body>
+    <%- include ../layout/nav.ejs %>
+    <div class="container">
+        <div id="loginbox" style="margin: 120px auto 220px auto;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">          
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title text-center text-uppercase" style="font-size: 40px; ">Chỉnh sửa thành viên</div>
+                </div>     
+                <div style="padding-top:30px" class="panel-body" >
+                    <div id="signupalert" style="<%if( !data || !data.error) {%>display:none <%}%>" class="alert alert-danger">
+                        <p>Error:</p>
+                        <%if (data && data.error) {%>
+                        <span><%=data.error%></span>
+                        <%}%>
+                    </div>
+                    <form class="form-horizontal" role="form" method="POST" action="/admin/member/edit">
+                    
+                        <div class="mb-1">
+                            Username:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user" style="margin-right: 6px;"></i></span>
+                            </div>
+                            <input type="text" name="username"  class="form-control" placeholder="Usename" value="<% if(data && data.user){%><%= data.user.username%><%}%>" readonly="readonly">
+                        </div>     
+
+                        
+                        <div class="mb-1">
+                            Họ tên:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                            </div>
+                            <input type="text" name="fullname" class="form-control" placeholder="Full name" value="<% if(data && data.user){%><%= data.user.fullname%><%}%>">
+                        </div>
+                        
+                        <div class="mb-1">
+                            Mã sinh viên:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                            </div>
+                            <input type="text" name="studentcode"  class="form-control" placeholder="Student code" value="<% if(data && data.user){%><%= data.user.studentcode%><%}%>">
+                        </div>
+                        
+                        <div class="mb-1">
+                            Lớp:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-school"></i></span>
+                            </div>
+                            <input type="text" name="class"  class="form-control" placeholder="Class" value="<% if(data && data.user){%><%= data.user.class%><%}%>">
+                        </div>
+                        
+                        <div class="mb-1">
+                            Email:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope-open-text" style="margin-right: 4px;"></i></span>
+                            </div>
+                            <input type="text" name="email"  class="form-control" placeholder="Email" value="<% if(data && data.user){%><%= data.user.email%><%}%>">
+                        </div>
+                        
+                        <div class="mb-1">
+                            Số điện thoại:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone-volume" style="margin-right: 6px; margin-left: 2px;"></i></span>
+                            </div>
+                            <input type="text" name="phonenumber"  class="form-control" placeholder="Phone number" value="<% if(data && data.user){%><%= data.user.phonenumber%><%}%>">
+                        </div>
+                        
+                        <div class="mb-1">
+                            Ngày sinh: 
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-birthday-cake" style="margin-right: 6px; margin-left: 1px;"></i></span>
+                            </div>
+                            <input type="date" name="dateofbirth"  class="form-control" value="<% if(data && data.user){%><%= data.date%><%}%>">
+                        </div>
+
+                        <div class="mb-1">
+                            Địa chỉ:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-address-card" style="margin-right: 3px; margin-left: 1px;"></i></span>
+                            </div>
+                            <input type="text" name="address"  class="form-control" placeholder="Address" value="<% if(data && data.user){%><%= data.user.address%><%}%>">
+                        </div>   
+                        
+                        <div class="mb-1">
+                            Bạn muốn là thành viên của nhóm:
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect">
+                                    <i class="fas fa-users" style="margin-right: 3px; margin-left: 1px;"></i>
+                                </label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect" name="studygroup">
+                                <option selected value="0">Chọn nhóm...</option>
+                                <option <%if(data && data.user && data.user.studygroup ==1){%> selected <%}%> value="1">Lập trình</option>
+                                <option <%if(data && data.user && data.user.studygroup ==2){%> selected <%}%> value="2">Thiết kế WEB</option>
+                                <option <%if(data && data.user && data.user.studygroup ==3){%> selected <%}%> value="3">Thiết kế đồ họa</option>
+                                <option <%if(data && data.user && data.user.studygroup ==4){%> selected <%}%> value="4">Quản trị mạng</option>
+                            </select>
+                        </div> 
+
+                        <div class="text-center" style="margin-top: 50px;" >
+                            <input type="submit" value="Cập nhật" class="btn btn-success" style="width: 150px;">
+                            <a class="btn btn-secondary" style="width: 150px;" href="/admin/member">Quay lại</a>
+                        </div>
+                    </form>
+                </div>                     
+            </div>  
+        </div>
+    </div>
+    <%- include ../layout/foot.ejs %>
+</body>
+</html>

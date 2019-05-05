@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thành viên</title>
+    <%- include layout/head.ejs %>
+    
+</head>
+<body>
+    <%- include layout/nav.ejs %>
+    
+        <div class="col col-md-12">
+            <div class="pt-2 my-5 mx-5" style="background-color: #eaeaea;">
+		        <h3 class="text-center text-uppercase my-3" style="color: #232B2B">Quản lý thành viên</h3>
+		        <div style="text-align: right;">
+		            <a href="/admin/member/add" class="btn btn-success mr-3" style="width: 150px;">Thêm thành viên</a>
+		            <a href="/admin" class="btn btn-secondary mr-3" style="width: 150px;">Quay lại</a>
+		        <table class="table table-striped" >
+		            <thead>
+		                <tr>
+		                    <th scope="col">#</th>
+		                    <th scope="col">Username</th>
+		                    <th scope="col">Họ tên</th>
+		                    <th scope="col">Mã sinh viên</th>
+		                    <th scope="col">Lớp</th>
+		                    <th scope="col">Email</th>
+		                    <th scope="col">Số điện thoại</th>
+		                    <th scope="col">Ngày sinh</th>
+		                    <th scope="col">Địa chỉ</th>
+		                    <th scope="col">Nhóm</th>
+		                    <th scope="col">Ngày tạo</th>
+		                    <th style="min-width: 140px;" scope="col">Tác vụ</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <% if(data && data.users){%>
+		                	<% var gr= "";
+		                	for(var i = 0; i < data.users.length; i++){
+			                	if(data.users[i].studygroup == 1){
+				                	gr = "Lập trình";
+				                }else if(data.users[i].studygroup == 2){
+				                	gr = "Web";
+				                }else if(data.users[i].studygroup == 3){
+				                	gr = "Đồ họa";
+				                }else{
+									gr = "QT Mạng";
+								}
+								var dob = new Date(data.users[i].dateofbirth);
+								if (dob.getMonth() >= 10) { 
+							    // Nếu tháng >= tháng 10
+							       if (dob.getDate() >= 10) { 
+							       // Nếu ngày >= ngày 10
+							        var date    =dob.getDate() + '-' +(dob.getMonth()+1)+ '-' + dob.getFullYear() ;   
+							       }
+							       else{ 
+							       // Nếu ngày < ngày 10 thì sẽ là 09, 08, 07,...
+							        var date    ='0' +dob.getDate()+ '-' + (dob.getMonth()+1) + '-' +dob.getFullYear()  ;
+							       }
+							    }
+							    else{ 
+							    // Nếu tháng < tháng 10
+							          if (dob.getDate() >= 10) { 
+							          // Nếu ngày >= ngày 10
+							             var date   = dob.getDate()+ '-0' +(dob.getMonth()+1) + '-' + dob.getFullYear();  
+							          }
+							          else{ 
+							          // Nếu ngày < ngày 10 thì sẽ là 09, 08, 07,...
+							            var date ='0' +dob.getDate()+ '-0' +(dob.getMonth()+1) + '-' + dob.getFullYear();
+							          }
+							    }
+							    var create = new Date(data.users[i].createdate);
+								if (create.getMonth() >= 10) { 
+							    // Nếu tháng >= tháng 10
+							       if (create.getDate() >= 10) { 
+							       // Nếu ngày >= ngày 10
+							        var datecr    =create.getDate() + '-' +(create.getMonth()+1)+ '-' + create.getFullYear() + " " + create.getHours() + ":" + create.getMinutes() ;   
+							       }
+							       else{ 
+							       // Nếu ngày < ngày 10 thì sẽ là 09, 08, 07,...
+							        var datecr    ='0' +create.getDate()+ '-' + (create.getMonth()+1) + '-' +create.getFullYear() + " " + create.getHours() + ":" + create.getMinutes() ;
+							       }
+							    }
+							    else{ 
+							    // Nếu tháng < tháng 10
+							          if (create.getDate() >= 10) { 
+							          // Nếu ngày >= ngày 10
+							             var datecr   = create.getDate()+ '-0' +(create.getMonth()+1) + '-' + create.getFullYear() + " " + create.getHours() + ":" + create.getMinutes();  
+							          }
+							          else{ 
+							          // Nếu ngày < ngày 10 thì sẽ là 09, 08, 07,...
+							            var datecr ='0' +create.getDate()+ '-0' +(create.getMonth()+1) + '-' + create.getFullYear() + " " + create.getHours() + ":" + create.getMinutes();
+							          }
+							    }
+								%>
+		                	<tr>
+		                        <th scope="row"><%= (i+1) %></th>
+		                        <td><%= data.users[i].username %></td>
+		                        <td><%= data.users[i].fullname %></td>
+		                        <td><%= data.users[i].studentcode %></td>
+		                        <td><%= data.users[i].class %></td>
+		                        <td><%= data.users[i].email %></td>
+		                        <td><%= data.users[i].phonenumber %></td>
+		                        <td><%= date %></td>
+		                        <td><%= data.users[i].address %></td>
+		                        <td><%= gr %>
+		                        	</td>
+		                        <td><%= datecr %></td>
+		                        <td style="color: #232B2B; text-align:center;">  
+		                                    <a style="min-width: 135px;" class="btn btn-primary" href="/admin/member/edit/<%= data.users[i].username%>"><i class="fas fa-check mr-1" ></i>Sửa</a> <br>
+		                                    <a style="min-width: 135px;" class="btn btn-danger" href="/admin/member/delete/<%= data.users[i].username%>"><i class="fas fa-times mr-1"></i>Xóa</a>
+		                                    
+		                        </td>
+		                    </tr> 
+		                    <% } %>
+		                <% } %> 
+		            </tbody>
+		        </table>
+		    </div>
+    </div>
+    <%- include layout/foot.ejs %>
+</body>
+</html>
